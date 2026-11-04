@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, monospace;
+  
+  /* ─── RED THEME ─── */
+  --color-primary: #ff2d2d;
+  --color-on-primary: #1a0000;
+  --color-secondary: #66df75;
+  --color-tertiary: #fabd00;
+  --color-error: #ff6b6b;
+  --color-background: #000000;
+  --color-on-background: #f0f0f0;
+  --color-surface: #080808;
+  --color-on-surface: #f0f0f0;
+  --color-on-surface-variant: #d4d4d4;
+  --color-surface-container: #0f0f0f;
+  --color-outline: #666666;
+  --color-outline-variant: #222222;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface font-sans selection:bg-primary/30 selection:text-on-surface;
+  }
+}
+
+@layer utilities {
+  .glow-primary {
+    box-shadow: 0 0 16px rgba(255, 45, 45, 0.35);
+  }
+  .glow-secondary {
+    box-shadow: 0 0 12px rgba(102, 223, 117, 0.35);
+  }
+  .glow-tertiary {
+    box-shadow: 0 0 12px rgba(250, 189, 0, 0.35);
+  }
+
+  /* Animated gradient background */
+  .grid-bg {
+    background-color: #000000;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(255, 20, 20, 0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(180, 0, 0, 0.03) 0%, transparent 50%),
+      linear-gradient(to right, #111111 1px, transparent 1px),
+      linear-gradient(to bottom, #111111 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
+    animation: bgPulse 12s ease-in-out infinite;
+  }
+
+  .terminal-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  .animate-scan {
+    animation: scan 8s linear infinite;
+  }
+
+  .glow-red-border {
+    box-shadow: 0 0 0 1px rgba(255, 45, 45, 0.2), 0 0 20px rgba(255, 45, 45, 0.05);
+  }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes bgPulse {
+  0%, 100% {
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(255, 20, 20, 0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(180, 0, 0, 0.03) 0%, transparent 50%),
+      linear-gradient(to right, #111111 1px, transparent 1px),
+      linear-gradient(to bottom, #111111 1px, transparent 1px);
+  }
+  33% {
+    background-image:
+      radial-gradient(ellipse at 60% 30%, rgba(255, 20, 20, 0.05) 0%, transparent 55%),
+      radial-gradient(ellipse at 20% 80%, rgba(200, 0, 0, 0.04) 0%, transparent 50%),
+      linear-gradient(to right, #111111 1px, transparent 1px),
+      linear-gradient(to bottom, #111111 1px, transparent 1px);
+  }
+  66% {
+    background-image:
+      radial-gradient(ellipse at 80% 70%, rgba(255, 20, 20, 0.03) 0%, transparent 60%),
+      radial-gradient(ellipse at 40% 20%, rgba(180, 0, 0, 0.05) 0%, transparent 50%),
+      linear-gradient(to right, #111111 1px, transparent 1px),
+      linear-gradient(to bottom, #111111 1px, transparent 1px);
+  }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 45, 45, 0.2); }
+  50%       { box-shadow: 0 0 20px rgba(255, 45, 45, 0.5); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #000000; }
+::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #ff2d2d44; }
+
+/* Input reset */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
